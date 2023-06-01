@@ -19,6 +19,7 @@
 </script>
 
 <div class="flex flex-col justify-center gap-8">
+	<input id="project_name" bind:value={$project.name} class="bg-zinc-100 text-4xl" />
 	<StopWatch
 		onStop={(start, stop) => {
 			$project.sessions = [
@@ -31,27 +32,17 @@
 		}}
 	/>
 	<div class="text-center font-mono text-6xl">{getTimeDisplay(totalTime)}</div>
-	<div class="flex flex-col gap-2">
-		<h2>Project Settings</h2>
-		<label for="project_name">
-			Name
-			<input id="project_name" bind:value={$project.name} />
+	<div class="flex flex-col items-center gap-2">
+		<label for="has_time_limit">
+			<input id="has_time_limit" type="checkbox" bind:checked={$project.isTimeLimited} />
+			Time Limit
 		</label>
-		<h3>Time Limit</h3>
-		<div class="flex flex-col gap-2 pl-4">
-			<label for="has_time_limit">
-				Enable
-				<input id="has_time_limit" type="checkbox" bind:checked={$project.isTimeLimited} />
-			</label>
-			<label for="time_limit">
-				Duration
-				<input
-					id="time_limit"
-					disabled={!$project.isTimeLimited}
-					bind:value={$project.timeLimitDuration}
-				/>
-			</label>
-		</div>
+
+		<input
+			id="time_limit"
+			disabled={!$project.isTimeLimited}
+			bind:value={$project.timeLimitDuration}
+		/>
 	</div>
 	<div class="flex flex-col gap-2">
 		<h2>Past Sessions</h2>
