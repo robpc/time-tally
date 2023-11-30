@@ -1,9 +1,17 @@
 <script lang="ts">
+	import dayjs from 'dayjs';
+	import localizedFormat from 'dayjs/plugin/localizedFormat';
 	import { myStore } from '$lib/store';
 	import { getTimeDisplay } from '$lib/time';
 	import StopWatch from './StopWatch.svelte';
 
 	const { project } = myStore;
+
+	dayjs.extend(localizedFormat);
+
+	function date(d: string) {
+		return dayjs(d).format('L LT');
+	}
 
 	let currentTime = 0;
 	$: exisitingTime = $project.sessions
@@ -53,8 +61,8 @@
 						Math.round(new Date(item.stop).getTime() - new Date(item.start).getTime())
 					)}
 				</div>
-				<div>{item.start.toLocaleString()}</div>
-				<div>{item.stop.toLocaleString()}</div>
+				<div>{date(item.start)}</div>
+				<div>{date(item.stop)}</div>
 			</div>
 		{:else}
 			<div>No sessions logged so far</div>
