@@ -8,6 +8,10 @@
 
 	const { project } = myStore;
 
+	function removeSessionById(id: string) {
+		$project.sessions = $project.sessions.filter((s) => s.id != id);
+	}
+
 	let currentTime = 0;
 	$: exisitingTime = $project.sessions
 		? $project.sessions.reduce(
@@ -47,11 +51,11 @@
 			bind:value={$project.timeLimitDuration}
 		/>
 	</div>
-	<div class="flex flex-col gap-2">
+	<div class="flex flex-col gap-4">
 		<h2>Past Sessions</h2>
 		<div class="flex flex-col-reverse gap-1">
 			{#each $project.sessions as item (item.id)}
-				<Session bind:item />
+				<Session bind:item onDelete={() => removeSessionById(item.id)} />
 			{:else}
 				<div>No sessions logged so far</div>
 			{/each}

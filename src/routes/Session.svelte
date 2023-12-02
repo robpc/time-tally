@@ -2,8 +2,10 @@
 	import { getTimeDisplay } from '$lib/time';
 	import StartStopTime from './StartStopTime.svelte';
 	import type { Session } from '$lib/store';
+	import InvertedButton from './InvertedButton.svelte';
 
 	export var item: Session;
+	export var onDelete: () => void;
 </script>
 
 <div class="flex flex-row gap-4">
@@ -12,6 +14,7 @@
 	</div>
 	<StartStopTime start={item.start} stop={item.stop} />
 	<input id="session_name_{item.id}" placeholder="Session name" bind:value={item.name} />
+	<InvertedButton on:click={onDelete}>🞪</InvertedButton>
 </div>
 
 <style lang="postcss">
