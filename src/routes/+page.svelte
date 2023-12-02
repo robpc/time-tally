@@ -47,18 +47,20 @@
 	</div>
 	<div class="flex flex-col gap-2">
 		<h2>Past Sessions</h2>
-		{#each $project.sessions as item}
-			<div class="flex flex-row gap-4">
-				<div>
-					{getTimeDisplay(
-						Math.round(new Date(item.stop).getTime() - new Date(item.start).getTime())
-					)}
+		<div class="flex flex-col-reverse">
+			{#each $project.sessions as item}
+				<div class="flex flex-row gap-4">
+					<div>
+						{getTimeDisplay(
+							Math.round(new Date(item.stop).getTime() - new Date(item.start).getTime())
+						)}
+					</div>
+					<StartStopTime start={item.start} stop={item.stop} />
 				</div>
-				<StartStopTime start={item.start} stop={item.stop} />
-			</div>
-		{:else}
-			<div>No sessions logged so far</div>
-		{/each}
+			{:else}
+				<div>No sessions logged so far</div>
+			{/each}
+		</div>
 	</div>
 </div>
 
