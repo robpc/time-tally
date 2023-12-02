@@ -5,6 +5,7 @@ import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
 
 export type Session = {
+	id: string;
 	name?: string;
 	start: string;
 	stop: string;

@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { nanoid } from 'nanoid';
+
 	import { myStore } from '$lib/store';
 	import { getTimeDisplay } from '$lib/time';
 	import StopWatch from './StopWatch.svelte';
-	import StartStopTime from '$lib/StartStopTime.svelte';
+	import Session from './Session.svelte';
 
 	const { project } = myStore;
 
@@ -25,7 +27,7 @@
 		onStop={(start, stop) => {
 			$project.sessions = [
 				...$project.sessions,
-				{ start: start.toISOString(), stop: stop.toISOString() }
+				{ id: nanoid(6), start: start.toISOString(), stop: stop.toISOString() }
 			];
 		}}
 		onUpdate={(time) => {
@@ -48,16 +50,8 @@
 	<div class="flex flex-col gap-2">
 		<h2>Past Sessions</h2>
 		<div class="flex flex-col-reverse gap-1">
-			{#each $project.sessions as item, idx}
-				<div class="flex flex-row gap-4">
-					<div>
-						{getTimeDisplay(
-							Math.round(new Date(item.stop).getTime() - new Date(item.start).getTime())
-						)}
-					</div>
-					<StartStopTime start={item.start} stop={item.stop} />
-					<input id="session_name_{idx}" placeholder="Session name" bind:value={item.name} />
-				</div>
+			{#each $project.sessions as item (item.id)}
+				<Session bind:item />
 			{:else}
 				<div>No sessions logged so far</div>
 			{/each}
