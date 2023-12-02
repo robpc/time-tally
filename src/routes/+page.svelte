@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex flex-col justify-center gap-8">
-	<input id="project_name" bind:value={$project.name} class="bg-zinc-100 text-4xl" />
+	<input id="project_name" bind:value={$project.name} placeholder="Project Name" class="text-4xl" />
 	<StopWatch
 		onStop={(start, stop) => {
 			$project.sessions = [
@@ -47,8 +47,8 @@
 	</div>
 	<div class="flex flex-col gap-2">
 		<h2>Past Sessions</h2>
-		<div class="flex flex-col-reverse">
-			{#each $project.sessions as item}
+		<div class="flex flex-col-reverse gap-1">
+			{#each $project.sessions as item, idx}
 				<div class="flex flex-row gap-4">
 					<div>
 						{getTimeDisplay(
@@ -56,6 +56,7 @@
 						)}
 					</div>
 					<StartStopTime start={item.start} stop={item.stop} />
+					<input id="session_name_{idx}" placeholder="Session name" bind:value={item.name} />
 				</div>
 			{:else}
 				<div>No sessions logged so far</div>
@@ -67,5 +68,16 @@
 <style lang="postcss">
 	:global(html) {
 		background-color: theme(colors.gray.100);
+	}
+
+	input {
+		@apply border-b-2 border-zinc-100 bg-zinc-100 px-2 py-0.5;
+	}
+
+	input:hover {
+		@apply bg-zinc-50;
+	}
+	input:focus {
+		@apply border-zinc-400 bg-zinc-50 outline-none;
 	}
 </style>
