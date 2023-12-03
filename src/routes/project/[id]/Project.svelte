@@ -64,10 +64,6 @@
 </div>
 
 <style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.gray.100);
-	}
-
 	input {
 		@apply border-b-2 border-zinc-100 bg-zinc-100 px-2 py-0.5;
 	}
