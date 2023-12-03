@@ -12,6 +12,7 @@ export type Session = {
 };
 
 export type Project = {
+	id: string;
 	name?: string;
 	isTimeLimited?: boolean;
 	timeLimitDuration?: string;
@@ -19,15 +20,23 @@ export type Project = {
 	sessions: Session[];
 };
 
+export type Application = {
+	projects: Project[];
+};
+
+const STORE_NAME = 'time-tally';
+
 class MyStore {
-	public project: Writable<Project>;
+	public application: Writable<Application>;
 	constructor() {
-		this.project = writable(<Project>{ sessions: [] });
+		this.application = writable(<Application>{ projects: [] });
 
 		if (browser) {
-			const project = localStorage.getItem('project');
-			this.project.set(project ? JSON.parse(project) : <Project>{ sessions: [] });
-			this.project.subscribe((value) => localStorage.setItem('project', JSON.stringify(value)));
+			const project = localStorage.getItem(STORE_NAME);
+			this.application.set(project ? JSON.parse(project) : <Application>{ projects: [] });
+			this.application.subscribe((value) =>
+				localStorage.setItem(STORE_NAME, JSON.stringify(value))
+			);
 		}
 	}
 }
