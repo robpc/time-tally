@@ -53,7 +53,7 @@
 	</div>
 	<div class="flex flex-col gap-4">
 		<h2>Past Sessions</h2>
-		<div class="flex flex-col-reverse gap-1">
+		<div class="flex flex-col-reverse gap-4">
 			{#each project.sessions as item (item.id)}
 				<Session bind:item onDelete={() => removeSessionById(item.id)} />
 			{:else}

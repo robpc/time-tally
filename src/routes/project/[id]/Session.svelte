@@ -8,12 +8,16 @@
 	export var onDelete: () => void;
 </script>
 
-<div class="flex flex-row gap-4">
-	<div>
+<div class="flex w-full flex-row items-center gap-2">
+	<div class="font-mono text-lg">
 		{getTimeDisplay(Math.round(new Date(item.stop).getTime() - new Date(item.start).getTime()))}
 	</div>
-	<StartStopTime start={item.start} stop={item.stop} />
-	<input id="session_name_{item.id}" placeholder="Session name" bind:value={item.name} />
+	<div class="gap-0.75 flex w-full flex-col">
+		<div class="ml-2 w-full text-right text-xs text-zinc-500">
+			<StartStopTime start={item.start} stop={item.stop} />
+		</div>
+		<input id="session_name_{item.id}" placeholder="Session name" bind:value={item.name} />
+	</div>
 	<InvertedButton on:click={onDelete}>🞪</InvertedButton>
 </div>
 
@@ -24,6 +28,7 @@
 
 	input {
 		@apply border-b-2 border-zinc-100 bg-zinc-100 px-2 py-0.5;
+		@apply grow;
 	}
 
 	input:hover {

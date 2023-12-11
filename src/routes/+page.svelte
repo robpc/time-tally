@@ -17,14 +17,12 @@
 
 <Button on:click={newProject}>New Project</Button>
 
-<div class="w-full">
+<div class="mt-4 w-full max-w-md">
 	<h1 class="mb-4 px-2 text-2xl">Projects</h1>
 	<div class="flex w-full flex-col gap-2 px-8">
 		{#each $application.projects as project (project.id)}
-			<div class="flex flex-row gap-2">
-				<div class="grow">
-					<a class="grow" href={`project/${project.id}`}>{project.name || 'Unamed'}</a>
-				</div>
+			<div class="flex w-full flex-row gap-2">
+				<a class="grow" href={`project/${project.id}`}>{project.name || 'Unamed'}</a>
 				<InvertedButton on:click={() => onDelete(project.id)}>🞪</InvertedButton>
 			</div>
 		{:else}
