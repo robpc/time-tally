@@ -18,7 +18,7 @@
 				(total, { start, stop }) =>
 					total + Math.round(new Date(stop).getTime() - new Date(start).getTime()),
 				0
-		  )
+			)
 		: 0;
 	$: totalTime = project.isTimeLimited
 		? parseInt(project.timeLimitDuration || '0') - (exisitingTime + Math.round(currentTime))
