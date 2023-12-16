@@ -9,6 +9,8 @@ jobs:
   exports:
     name: Deploy to GH Pages
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -24,7 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+        uses: JamesIves/github-pages-deploy-action@4
         with:
           branch: gh-pages
           folder: build/
