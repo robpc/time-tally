@@ -16,13 +16,13 @@ const config = {
 			fallback: '404.html',
 			prerender: {
 				entries: []
-			},
+			}
 			// precompress: false,
 			// strict: true,
-			paths: {
-				base: '/time-tally/'
-			}
-		})
+		}),
+		paths: {
+			base: '/time-tally'
+		}
 	}
 };
 
