@@ -7,6 +7,10 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 
+	paths: {
+		base: '/time-tally/'
+	},
+
 	kit: {
 		adapter: adapter({
 			// default options are shown. On some platforms
