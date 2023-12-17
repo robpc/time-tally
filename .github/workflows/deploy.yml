@@ -25,6 +25,7 @@ jobs:
           node-version: '18.x'
       - run: npm ci
       - run: npm run build
+      - run: cp build/404.html build/index.html
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
