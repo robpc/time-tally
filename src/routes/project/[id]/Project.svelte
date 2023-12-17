@@ -25,20 +25,14 @@
 		: exisitingTime + Math.round(currentTime);
 </script>
 
+<svelte:head>
+	<title>{project.name} - Time Tally</title>
+</svelte:head>
+
 <div class="flex flex-col justify-center gap-8">
 	<input id="project_name" bind:value={project.name} placeholder="Project Name" class="text-4xl" />
-	<StopWatch
-		onStop={(start, stop) => {
-			project.sessions = [
-				...project.sessions,
-				{ id: nanoid(6), start: start.toISOString(), stop: stop.toISOString() }
-			];
-		}}
-		onUpdate={(time) => {
-			currentTime = time;
-		}}
-	/>
 	<div class="text-center font-mono text-6xl">{getTimeDisplay(totalTime)}</div>
+	
 	<div class="flex flex-col items-center gap-2">
 		<label for="has_time_limit">
 			<input id="has_time_limit" type="checkbox" bind:checked={project.isTimeLimited} />
@@ -51,8 +45,21 @@
 			bind:value={project.timeLimitDuration}
 		/>
 	</div>
+	
+	<StopWatch
+		onStop={(start, stop) => {
+			project.sessions = [
+				...project.sessions,
+				{ id: nanoid(6), start: start.toISOString(), stop: stop.toISOString() }
+			];
+		}}
+		onUpdate={(time) => {
+			currentTime = time;
+		}}
+	/>
+	
 	<div class="flex flex-col gap-4">
-		<h2>Past Sessions</h2>
+		<h2 class="mb-2 text-2xl">Past Sessions</h2>
 		<div class="flex flex-col-reverse gap-4">
 			{#each project.sessions as item (item.id)}
 				<Session bind:item onDelete={() => removeSessionById(item.id)} />

@@ -45,9 +45,9 @@
 	}
 </script>
 
-<div class="flex flex-col justify-center gap-2 rounded-2xl bg-zinc-200 p-4">
+<div class="flex flex-row justify-between gap-2 items-center rounded-2xl bg-zinc-200 p-4">
 	<div class="text-center font-mono text-4xl">{display}</div>
-	<div class="flex flex-row justify-center gap-2">
+	<div class="flex flex-row justify-center gap-2 h-8">
 		<Button on:click={startTimer} disabled={!!start}>Start</Button>
 		<Button on:click={stopTimer} disabled={!!stop}>Stop</Button>
 	</div>
