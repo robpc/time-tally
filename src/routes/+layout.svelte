@@ -15,7 +15,7 @@
 	<div class="font-mono text-xs font-bold text-zinc-600">time-tally</div>
 </div>
 <div class="mx-2 h-8 w-full">
-	{#if showBack}<a href="${base}/" class="font-mono text-xs text-zinc-500 hover:underline">⋘ projects</a>{/if}
+	{#if showBack}<a href="{base}/" class="font-mono text-xs text-zinc-500 hover:underline">⋘ projects</a>{/if}
 </div>
 <div class="flex flex-col items-center justify-center px-4 py-1">
 	<slot />
