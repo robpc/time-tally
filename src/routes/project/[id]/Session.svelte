@@ -16,7 +16,7 @@
 		<div class="ml-2 w-full text-right text-xs text-zinc-500">
 			<StartStopTime start={item.start} stop={item.stop} />
 		</div>
-		<input id="session_name_{item.id}" placeholder="Session name" bind:value={item.name} />
+		<input id="session_name_{item.id}" placeholder="Unnamed session" bind:value={item.name} />
 	</div>
 	<InvertedButton on:click={onDelete}>🞪</InvertedButton>
 </div>

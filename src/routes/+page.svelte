@@ -15,18 +15,22 @@
 	}
 </script>
 
+
 <Button on:click={newProject}>New Project</Button>
+
 
 <div class="mt-4 w-full max-w-md">
 	<h1 class="mb-4 px-2 text-2xl">Projects</h1>
 	<div class="flex w-full flex-col gap-2 px-8">
+		{#if !$application.loading}
 		{#each $application.projects as project (project.id)}
 			<div class="flex w-full flex-row gap-2">
-				<a class="grow" href={`project/${project.id}`}>{project.name || 'Unamed'}</a>
+				<a href={`project/${project.id}`} class="grow hover:underline text-blue-600">{project.name || 'Unamed'}</a>
 				<InvertedButton on:click={() => onDelete(project.id)}>🞪</InvertedButton>
 			</div>
 		{:else}
 			<div>No projects</div>
 		{/each}
+		{/if}
 	</div>
 </div>

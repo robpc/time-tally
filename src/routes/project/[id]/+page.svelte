@@ -15,7 +15,7 @@
 
 {#if idx > -1}
 	<Project bind:project={$application.projects[idx]} />
-{:else}
-	<div>Not found</div>
-	<div>{id}</div>
+{:else if !$application.loading}
+	<h1 class="text-2xl mb-4">Project Not found</h1>
+	<div><a href="/" class="hover:underline text-blue-400">Return to project list</a></div>
 {/if}

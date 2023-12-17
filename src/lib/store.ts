@@ -22,6 +22,7 @@ export type Project = {
 
 export type Application = {
 	projects: Project[];
+	loading?: boolean;
 };
 
 const STORE_NAME = 'time-tally';
@@ -29,7 +30,7 @@ const STORE_NAME = 'time-tally';
 class MyStore {
 	public application: Writable<Application>;
 	constructor() {
-		this.application = writable(<Application>{ projects: [] });
+		this.application = writable(<Application>{ projects: [], loading: true });
 
 		if (browser) {
 			const project = localStorage.getItem(STORE_NAME);
