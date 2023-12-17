@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { myStore } from '$lib/store';
 
@@ -17,5 +18,5 @@
 	<Project bind:project={$application.projects[idx]} />
 {:else if !$application.loading}
 	<h1 class="text-2xl mb-4">Project Not found</h1>
-	<div><a href="/" class="hover:underline text-blue-400">Return to project list</a></div>
+	<div><a href={`${base}/`} class="hover:underline text-blue-400">Return to project list</a></div>
 {/if}
